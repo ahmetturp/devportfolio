@@ -2,34 +2,36 @@
 <html>
 <head>
 <meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
-<title>Typora</title><link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; }
+<title>Visual-Analytics</title><link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; }
 html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
-body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; }
+body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
 iframe { margin: auto; }
 a.url { word-break: break-all; }
 a:active, a:hover { outline: 0px; }
 .in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
-#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; word-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 40px; }
 #write.first-line-indent p { text-indent: 2em; }
 #write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
 #write.first-line-indent li { margin-left: 2em; }
 .for-image #write { padding-left: 8px; padding-right: 8px; }
 body.typora-export { padding-left: 30px; padding-right: 30px; }
-.typora-export .footnote-line, .typora-export p { white-space: pre-wrap; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
 @media screen and (max-width: 500px) {
   body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
   .CodeMirror-sizer { margin-left: 0px !important; }
   .CodeMirror-gutters { display: none !important; }
 }
-#write li > figure:first-child { margin-top: -20px; }
+#write li > figure:last-child { margin-bottom: 0.5rem; }
 #write ol, #write ul { position: relative; }
-img { max-width: 100%; vertical-align: middle; }
-button, input, select, textarea { color: inherit; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; font-size: inherit; line-height: inherit; font-family: inherit; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
 input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
 *, ::after, ::before { box-sizing: border-box; }
 #write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
 #write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
-h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 2; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
 p { orphans: 4; }
 h1 { font-size: 2rem; }
 h2 { font-size: 1.8rem; }
@@ -45,12 +47,13 @@ sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); 
 sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
 #write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
 figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
-figure > table { margin: 0px !important; }
+figure > table { margin: 0px; }
 tr { break-inside: avoid; break-after: auto; }
 thead { display: table-header-group; }
 table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
-table.md-table td { min-width: 80px; }
+table.md-table td { min-width: 32px; }
 .CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
 .CodeMirror { text-align: left; }
 .CodeMirror-placeholder { opacity: 0.3; }
 .CodeMirror pre { padding: 0px 4px; }
@@ -79,26 +82,27 @@ blockquote > :first-child, li > :first-child { margin-top: 0px; }
 .footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
 #write .footnote-line { white-space: pre-wrap; }
 @media print {
-  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; }
-  #write { margin-top: 0px; border-color: transparent !important; }
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
   .typora-export * { -webkit-print-color-adjust: exact; }
   html.blink-to-pdf { font-size: 13px; }
-  .typora-export #write { padding-left: 1cm; padding-right: 1cm; padding-bottom: 0px; break-after: avoid; }
+  .typora-export #write { padding-left: 32px; padding-right: 32px; padding-bottom: 0px; break-after: avoid; }
   .typora-export #write::after { height: 0px; }
-  @page { margin: 20mm 0px; }
+  .is-mac table { break-inside: avoid; }
 }
 .footnote-line { margin-top: 0.714em; font-size: 0.7em; }
 a img, img a { cursor: pointer; }
 pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
-p > img:only-child { display: block; margin: auto; }
-p > .md-image:only-child { display: inline-block; width: 100%; text-align: center; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
 #write .MathJax_Display { margin: 0.8em 0px 0px; }
 .md-math-block { width: 100%; }
 .md-math-block:not(:empty)::after { display: none; }
-[contenteditable="true"]:active, [contenteditable="true"]:focus { outline: 0px; box-shadow: none; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
 .md-task-list-item { position: relative; list-style-type: none; }
 .task-list-item.md-task-list-item { padding-left: 0px; }
-.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
 .math { font-size: 1rem; }
 .md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
 .md-toc-content { position: relative; margin-left: 0px; }
@@ -129,105 +133,396 @@ kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 
 code { text-align: left; vertical-align: initial; }
 a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
 .md-inline-math .MathJax_SVG .noError { display: none !important; }
+.html-for-mac .inline-math-svg .MathJax_SVG { vertical-align: 0.2px; }
 .md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: hidden; display: block !important; }
 .MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
 .MathJax_SVG .MJX-monospace { font-family: var(--monospace); }
 .MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
-.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; zoom: 90%; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; }
-.MathJax_SVG * { transition: none; }
-.MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; }
+.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; zoom: 90%; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; }
+.MathJax_SVG * { transition: none 0s ease 0s; }
+.MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; margin-top: 0px !important; }
 .os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
 .md-diagram-panel > svg { max-width: 100%; }
-[lang="mermaid"] svg, [lang="flow"] svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
 [lang="mermaid"] .node text { font-size: 1rem; }
 table tr th { border-bottom: 0px; }
 video { max-width: 100%; display: block; margin: 0px auto; }
 iframe { max-width: 100%; width: 100%; border: none; }
 .highlight td, .highlight tr { border: 0px; }
+svg[id^="mermaidChart"] { line-height: 1em; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+mark .md-meta { color: rgb(0, 0, 0); opacity: 0.3 !important; }
 
 
-:root { --side-bar-bg-color: #fafafa; --control-text-color: #777; }
-@font-face { font-family: "Open Sans"; font-style: normal; font-weight: normal; src: local("Open Sans Regular"), url("./github/400.woff") format("woff"); }
-@font-face { font-family: "Open Sans"; font-style: italic; font-weight: normal; src: local("Open Sans Italic"), url("./github/400i.woff") format("woff"); }
-@font-face { font-family: "Open Sans"; font-style: normal; font-weight: bold; src: local("Open Sans Bold"), url("./github/700.woff") format("woff"); }
-@font-face { font-family: "Open Sans"; font-style: italic; font-weight: bold; src: local("Open Sans Bold Italic"), url("./github/700i.woff") format("woff"); }
-html { font-size: 16px; }
-body { font-family: "Open Sans", "Clear Sans", "Helvetica Neue", Helvetica, Arial, sans-serif; color: rgb(51, 51, 51); line-height: 1.6; }
-#write { max-width: 860px; margin: 0px auto; padding: 30px 30px 100px; }
-#write > ul:first-child, #write > ol:first-child { margin-top: 30px; }
-a { color: rgb(65, 131, 196); }
-h1, h2, h3, h4, h5, h6 { position: relative; margin-top: 1rem; margin-bottom: 1rem; font-weight: bold; line-height: 1.4; cursor: text; }
-h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor { text-decoration: none; }
-h1 tt, h1 code { font-size: inherit; }
-h2 tt, h2 code { font-size: inherit; }
-h3 tt, h3 code { font-size: inherit; }
-h4 tt, h4 code { font-size: inherit; }
-h5 tt, h5 code { font-size: inherit; }
-h6 tt, h6 code { font-size: inherit; }
-h1 { padding-bottom: 0.3em; font-size: 2.25em; line-height: 1.2; border-bottom: 1px solid rgb(238, 238, 238); }
-h2 { padding-bottom: 0.3em; font-size: 1.75em; line-height: 1.225; border-bottom: 1px solid rgb(238, 238, 238); }
-h3 { font-size: 1.5em; line-height: 1.43; }
-h4 { font-size: 1.25em; }
-h5 { font-size: 1em; }
-h6 { font-size: 1em; color: rgb(119, 119, 119); }
-p, blockquote, ul, ol, dl, table { margin: 0.8em 0px; }
-li > ol, li > ul { margin: 0px; }
-hr { height: 2px; padding: 0px; margin: 16px 0px; background-color: rgb(231, 231, 231); border: 0px none; overflow: hidden; box-sizing: content-box; }
-li p.first { display: inline-block; }
-ul, ol { padding-left: 30px; }
-ul:first-child, ol:first-child { margin-top: 0px; }
-ul:last-child, ol:last-child { margin-bottom: 0px; }
-blockquote { border-left: 4px solid rgb(223, 226, 229); padding: 0px 15px; color: rgb(119, 119, 119); }
-blockquote blockquote { padding-right: 0px; }
-table { padding: 0px; word-break: initial; }
-table tr { border-top: 1px solid rgb(223, 226, 229); margin: 0px; padding: 0px; }
-table tr:nth-child(2n), thead { background-color: rgb(248, 248, 248); }
-table tr th { font-weight: bold; border-width: 1px 1px 0px; border-top-style: solid; border-right-style: solid; border-left-style: solid; border-top-color: rgb(223, 226, 229); border-right-color: rgb(223, 226, 229); border-left-color: rgb(223, 226, 229); border-image: initial; border-bottom-style: initial; border-bottom-color: initial; text-align: left; margin: 0px; padding: 6px 13px; }
-table tr td { border: 1px solid rgb(223, 226, 229); text-align: left; margin: 0px; padding: 6px 13px; }
-table tr th:first-child, table tr td:first-child { margin-top: 0px; }
-table tr th:last-child, table tr td:last-child { margin-bottom: 0px; }
-.CodeMirror-lines { padding-left: 4px; }
-.code-tooltip { box-shadow: rgba(0, 28, 36, 0.3) 0px 1px 1px 0px; border-top: 1px solid rgb(238, 242, 242); }
-.md-fences, code, tt { border: 1px solid rgb(231, 234, 237); background-color: rgb(248, 248, 248); border-radius: 3px; padding: 2px 4px 0px; font-size: 0.9em; }
-code { background-color: rgb(243, 244, 244); padding: 0px 4px 2px; }
-.md-fences { margin-bottom: 15px; margin-top: 15px; padding: 8px 1em 6px; }
-.md-task-list-item > input { margin-left: -1.3em; }
-@media print {
-  html { font-size: 13px; }
-  table, pre { break-inside: avoid; }
-  pre { word-wrap: break-word; }
+:root {
+    --side-bar-bg-color: #fafafa;
+    --control-text-color: #777;
 }
-.md-fences { background-color: rgb(248, 248, 248); }
-#write pre.md-meta-block { padding: 1rem; font-size: 85%; line-height: 1.45; background-color: rgb(247, 247, 247); border: 0px; border-radius: 3px; color: rgb(119, 119, 119); margin-top: 0px !important; }
-.mathjax-block > .code-tooltip { bottom: 0.375rem; }
-.md-mathjax-midline { background: rgb(250, 250, 250); }
-#write > h3.md-focus::before { left: -1.5625rem; top: 0.375rem; }
-#write > h4.md-focus::before { left: -1.5625rem; top: 0.285714rem; }
-#write > h5.md-focus::before { left: -1.5625rem; top: 0.285714rem; }
-#write > h6.md-focus::before { left: -1.5625rem; top: 0.285714rem; }
-.md-image > .md-meta { border-radius: 3px; padding: 2px 0px 0px 4px; font-size: 0.9em; color: inherit; }
-.md-tag { color: rgb(167, 167, 167); opacity: 1; }
-.md-toc { margin-top: 20px; padding-bottom: 20px; }
-.sidebar-tabs { border-bottom: none; }
-#typora-quick-open { border: 1px solid rgb(221, 221, 221); background-color: rgb(248, 248, 248); }
-#typora-quick-open-item { background-color: rgb(250, 250, 250); border-color: rgb(254, 254, 254) rgb(229, 229, 229) rgb(229, 229, 229) rgb(238, 238, 238); border-style: solid; border-width: 1px; }
-.on-focus-mode blockquote { border-left-color: rgba(85, 85, 85, 0.12); }
-header, .context-menu, .megamenu-content, footer { font-family: "Segoe UI", Arial, sans-serif; }
-.file-node-content:hover .file-node-icon, .file-node-content:hover .file-node-open-state { visibility: visible; }
-.mac-seamless-mode #typora-sidebar { background-color: var(--side-bar-bg-color); }
-.md-lang { color: rgb(180, 101, 77); }
-.html-for-mac .context-menu { --item-hover-bg-color: #E6F0FE; }
-#md-notification .btn { border: 0px; }
-.dropdown-menu .divider { border-color: rgb(229, 229, 229); }
+
+@include-when-export url(https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
+
+/* open-sans-regular - latin-ext_latin */
+  /* open-sans-italic - latin-ext_latin */
+    /* open-sans-700 - latin-ext_latin */
+    /* open-sans-700italic - latin-ext_latin */
+  html {
+    font-size: 16px;
+}
+
+body {
+    font-family: "Open Sans","Clear Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: rgb(51, 51, 51);
+    line-height: 1.6;
+}
+
+#write {
+    max-width: 860px;
+  	margin: 0 auto;
+  	padding: 30px;
+    padding-bottom: 100px;
+}
+
+@media only screen and (min-width: 1400px) {
+	#write {
+		max-width: 1024px;
+	}
+}
+
+@media only screen and (min-width: 1800px) {
+	#write {
+		max-width: 1200px;
+	}
+}
+
+#write > ul:first-child,
+#write > ol:first-child{
+    margin-top: 30px;
+}
+
+a {
+    color: #4183C4;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+}
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+h1 tt,
+h1 code {
+    font-size: inherit;
+}
+h2 tt,
+h2 code {
+    font-size: inherit;
+}
+h3 tt,
+h3 code {
+    font-size: inherit;
+}
+h4 tt,
+h4 code {
+    font-size: inherit;
+}
+h5 tt,
+h5 code {
+    font-size: inherit;
+}
+h6 tt,
+h6 code {
+    font-size: inherit;
+}
+h1 {
+    padding-bottom: .3em;
+    font-size: 2.25em;
+    line-height: 1.2;
+    border-bottom: 1px solid #eee;
+}
+h2 {
+   padding-bottom: .3em;
+    font-size: 1.75em;
+    line-height: 1.225;
+    border-bottom: 1px solid #eee;
+}
+h3 {
+    font-size: 1.5em;
+    line-height: 1.43;
+}
+h4 {
+    font-size: 1.25em;
+}
+h5 {
+    font-size: 1em;
+}
+h6 {
+   font-size: 1em;
+    color: #777;
+}
+p,
+blockquote,
+ul,
+ol,
+dl,
+table{
+    margin: 0.8em 0;
+}
+li>ol,
+li>ul {
+    margin: 0 0;
+}
+hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+li p.first {
+    display: inline-block;
+}
+ul,
+ol {
+    padding-left: 30px;
+}
+ul:first-child,
+ol:first-child {
+    margin-top: 0;
+}
+ul:last-child,
+ol:last-child {
+    margin-bottom: 0;
+}
+blockquote {
+    border-left: 4px solid #dfe2e5;
+    padding: 0 15px;
+    color: #777777;
+}
+blockquote blockquote {
+    padding-right: 0;
+}
+table {
+    padding: 0;
+    word-break: initial;
+}
+table tr {
+    border-top: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}
+table tr:nth-child(2n),
+thead {
+    background-color: #f8f8f8;
+}
+table tr th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    margin: 0;
+    padding: 6px 13px;
+}
+table tr td {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 6px 13px;
+}
+table tr th:first-child,
+table tr td:first-child {
+    margin-top: 0;
+}
+table tr th:last-child,
+table tr td:last-child {
+    margin-bottom: 0;
+}
+
+.CodeMirror-lines {
+    padding-left: 4px;
+}
+
+.code-tooltip {
+    box-shadow: 0 1px 1px 0 rgba(0,28,36,.3);
+    border-top: 1px solid #eef2f2;
+}
+
+.md-fences,
+code,
+tt {
+    border: 1px solid #e7eaed;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+    padding: 0;
+    padding: 2px 4px 0px 4px;
+    font-size: 0.9em;
+}
+
+code {
+    background-color: #f3f4f4;
+    padding: 0 2px 0 2px;
+}
+
+.md-fences {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+}
 
 
+.md-task-list-item > input {
+  margin-left: -1.3em;
+}
+
+@media print {
+    html {
+        font-size: 13px;
+    }
+    table,
+    pre {
+        page-break-inside: avoid;
+    }
+    pre {
+        word-wrap: break-word;
+    }
+}
+
+.md-fences {
+	background-color: #f8f8f8;
+}
+#write pre.md-meta-block {
+	padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.mathjax-block>.code-tooltip {
+	bottom: .375rem;
+}
+
+.md-mathjax-midline {
+    background: #fafafa;
+}
+
+#write>h3.md-focus:before{
+	left: -1.5625rem;
+	top: .375rem;
+}
+#write>h4.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h5.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h6.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+.md-image>.md-meta {
+    /*border: 1px solid #ddd;*/
+    border-radius: 3px;
+    padding: 2px 0px 0px 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+
+.md-tag {
+    color: #a7a7a7;
+    opacity: 1;
+}
+
+.md-toc { 
+    margin-top:20px;
+    padding-bottom:20px;
+}
+
+.sidebar-tabs {
+    border-bottom: none;
+}
+
+#typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+#typora-quick-open-item {
+    background-color: #FAFAFA;
+    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+    border-style: solid;
+    border-width: 1px;
+}
+
+/** focus mode */
+.on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+header, .context-menu, .megamenu-content, footer{
+    font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state{
+    visibility: visible;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: #fafafa;
+    background-color: var(--side-bar-bg-color);
+}
+
+.md-lang {
+    color: #b4654d;
+}
+
+.html-for-mac .context-menu {
+    --item-hover-bg-color: #E6F0FE;
+}
+
+#md-notification .btn {
+    border: 0;
+}
+
+.dropdown-menu .divider {
+    border-color: #e5e5e5;
+}
+
+.ty-preferences .window-content {
+    background-color: #fafafa;
+}
+
+.ty-preferences .nav-group-item.active {
+    color: white;
+    background: #999;
+}
 
 
-
- .typora-export p, .typora-export .footnote-line {white-space: normal;} 
 </style>
 </head>
 <body class='typora-export os-windows' >
-<div  id='write'  class = 'is-node'><h1><a name='header-n2408' class='md-header-anchor '></a>Analysis of the Video Game Industry</h1><h2><a name='header-n2410' class='md-header-anchor '></a>Contents</h2><ul><li><p><a href='#header-n2446'>Project Description</a></p></li><li><p><a href='#header-n2449'>Dataset Description</a></p></li><li><p><a href='#header-n2482'>Dashboard: Design</a></p><ul><li><a href='#header-n2483'>Design Rationale</a></li><li><a href='#header-n2500'>Cost/Benefit Discussion</a></li></ul></li><li><p><a href='#header-n2516'>Dashboard: Development</a></p><ul><li><a href='#header-n2517'>Top Countries By Game Revenues</a></li><li><a href='#header-n2544'>Global Sales By Year</a></li><li><a href='#header-n2578'>Word Cloud</a></li><li><a href='#header-n2593'>Game Sales By Platforms</a></li><li><a href='#header-n2612'>Global Sales vs. Average Critic Scores</a></li></ul></li><li><p><a href='#header-n2633'>Dashboard: Evaluation</a></p></li><li><p><a href='#header-n2651'>10 Meaningful Facts</a></p></li><li><p><a href='#header-n2668'>5 Actionable Insights </a></p></li><li><p><a href='#header-n2680'>2 Valuable Outcomes</a></p></li><li><p><a href='#header-n2686'>References</a></p></li></ul><h2><a name='header-n2446' class='md-header-anchor '></a>Project Description</h2><p>The video game industry is growing every year with new products and technologies. Experts expect the industry will be worth $138 billion by the end of 2018. The industry has a bigger impact on our daily lives than we thought. For example, processor and graphics cards manufacturers develop more and more powerful units along the years for us to run the latest game titles. But most users don&#39;t use that much power. A humble PC can run any operating system or office software to run our routine non-gaming tasks on PC.</p><p>In my project, Analysis of the Video Game Industry, I analyzed 16,715 game titles released in the last 35 years and tried not just to create <em>some visualizations</em> but to give a brief history of the industry as well. During the visualizations, you will see which countries are leading the industry, how the internet has changed it, life cycles/successes/failures of gaming consoles and how game critics affected the sales of video games.</p><h2><a name='header-n2449' class='md-header-anchor '></a>Dataset Description</h2><p>I used 3 datasets:</p><p><strong>Sources:</strong> </p><ul><li><a href='https://www.kaggle.com/rush4ratio/video-game-sales-with-ratings'>Video Game Sales With Ratings, Kaggle</a> (Video_Games_Sales_1980-2016.csv)</li><li><a href='https://newzoo.com/insights/rankings/top-100-countries-by-game-revenues/'>Top 100 Countries/Markets by Game Revenues, newzoo</a> (Markets_by_Game_Revenues-2015-2018.xlsx)</li><li><a href='https://ir.ea.com'>Electronic Arts</a> and <a href='https://www.ubisoft.com/en-US/company/investor_center/index.aspx'>Ubisoft</a> annual reports in 2007-2018 (Packaged And Digital Sales.xlsx)</li></ul><p>In <em>Video Game Sales With Ratings</em>, there are 16,715 game titles. The ones that I used are; platform they have been released, sales in North America, Europe and Japan and Critic Scores.</p><p>In <em>Top 100 Countries/Markets by Game Revenues</em>, countries listed along with their total revenues. I combined the years 2015, 2016, 2017 and 2018 in one single Excel file. I used relationships (left join by Country) between the sheets, as can be seen below:</p><p><img src='images/TopCountriesByGameRevenues/TableRelationships.png' alt='TopCountriesByGameRevenuesTableRelationships' referrerPolicy='no-referrer' /></p><p>In annual reports of <em>Electronic Arts</em> and <em>Ubisoft</em>, I referred to their fiscal year reports between the years 2007-2018. The file contains packaged sales and digital sales, year by year.</p><p>All of the sources are public and can be found in the &quot;Datasets&quot; folder in the main folder of the project.</p><iframe width="800" height="300" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSX_gJQX2A1WVq9JgzRNNa4iXkjc9tqDey1T-Zlwv5qkjj6pSsYvO3xL_oyUR52MG84UcnRdk-sTv4N/pubhtml?widget=true&amp;headers=false" onerror="this.style.display = 'none';"></iframe><p><strong>Type:</strong> Excel, CSV</p><p><strong>Size:</strong> 1,59 MB. 16,715 Game Titles</p><p><strong>Transformations:</strong> </p><p>Video Game Sales With Ratings:</p><ul><li>Removed 2 games with no titles</li><li>Added missing &quot;Year&quot;s to some titles</li><li>Updated sales of top titles of 2016</li></ul><p>Top 100 Countries/Markets by Game Revenues</p><ul><li>Years 2015, 2016, 2017 and 2018 combined in one Excel file</li><li>Removed decimal separators from &quot;Population&quot;, &quot;Internet Population&quot; and &quot;Total Revenues in US Dollars&quot; columns.</li></ul><h2><a name='header-n2482' class='md-header-anchor '></a>Dashboard: Design</h2><h3><a name='header-n2483' class='md-header-anchor '></a>Design Rationale</h3><p>I used bar graph, line (area) graph, stacked bars and scatter plots to create visualizations. All visualizations were created in Tableau Desktop version 2018.2.</p><h4><a name='header-n2485' class='md-header-anchor '></a>Bar Graphs</h4><p>Bar graphs are a good way to compare values between different groups (Y axis) and track changes over time (X axis). Bar graphs work best when the changes over time are large (but not massive). Data can be visualized both vertically and horizontally. In <em>Top Countries By Game Revenues</em> visualization, I choose bar graphs to show the growth of the industry for the last 4 years. </p><p><strong>Possible use cases:</strong> Poll results, how Y value changed in X years...</p><h4><a name='header-n2488' class='md-header-anchor '></a>Line Graphs</h4><p>Line graphs often used to visualize real-time or more frequent <em>ticks</em> of data. Area graphs are a kind of line graphs. Area graphs work the best when comparing two or more related groups. In <em>Global Sales By Year</em> visualization, I choose area graph to determine dramatic ups and downs in the industry.</p><p><strong>Possible use cases:</strong> Telemetry data, exchange rates...</p><h4><a name='header-n2491' class='md-header-anchor '></a>Word Clouds</h4><p>Word clouds are used to spot word frequencies. They reflect the topic; for example a word cloud of a political topic contain words like <em>freedom</em>, <em>employment</em>, <em>government</em> while a music topic can contain words like <em>sound, equipment, classical</em> etc.</p><p><strong>Possible use cases:</strong> Analyzing surveys, creating keywords...</p><h4><a name='header-n2494' class='md-header-anchor '></a>Stacked Bars</h4><p>Stacked bars are a kind of bar graphs but this time, the bars are divided and can contain more than one variable. In <em>Game Sales by Platforms</em> visualization, there are multiple gaming platforms in one year so I used stacked bars to present them.</p><p><strong>Possible use cases:</strong> Similar as for bar graphs.</p><h4><a name='header-n2497' class='md-header-anchor '></a>Scatter Plots</h4><p>Scatter plots (a.k.a. X-Y plots) are used to present relationships between two different values. If both variables increase, it means that they have a positive relationship. If one variable decreases while the other increases, it means that they have a negative relationship. That is just what I needed to present at the <em>Global Sales vs. Average Critic Scores</em> visualization. X level represents the game&#39;s critic scores and Y level represents global sales of the game.</p><p><strong>Possible use cases:</strong> When any relationships need to be visualized.</p><h3><a name='header-n2500' class='md-header-anchor '></a>Cost/Benefit Discussion</h3><h4><a name='header-n2501' class='md-header-anchor '></a>Bar Graphs</h4><p><strong>Benefit:</strong> Bar graphs are useful for displaying steady increase or decrease of the data [1]. They are very easy to understand especially when the data is sorted.</p><p><strong>Cost:</strong> They are not very useful for real-time data since they are not optimal to display small changes in the data. The data should not fluctuate otherwise comparing the data would be difficult.</p><h4><a name='header-n2504' class='md-header-anchor '></a>Line Graphs</h4><p><strong>Benefit:</strong> Line graphs are useful for displaying trends of the data. Y axis could represent anything, but X level ordinarily represents time [2]. They are also a good way to represent intersecting data.</p><p><strong>Cost:</strong> They can not be sorted through the X axis: the data always flows from left to right.</p><h4><a name='header-n2507' class='md-header-anchor '></a>Word Clouds</h4><p><strong>Benefit:</strong> They are visually appealing. Hundreds of data can be displayed...</p><p><strong>Cost:</strong> ...but displaying that much data makes more difficult to find a specific one. The size of the word might not be represent the main idea of the topic.</p><h4><a name='header-n2510' class='md-header-anchor '></a>Stacked Bars</h4><p><strong>Benefit:</strong> Stacked bars work well when total and subtotals need to be shown at the same time.</p><p><strong>Cost:</strong> Too many stacks make the data too complicated to understand.</p><h4><a name='header-n2513' class='md-header-anchor '></a>Scatter Plots</h4><p><strong>Benefit:</strong> Scatter plots are one of the rare visualizations that is used to represent relationships between two (or more) data.</p><p><strong>Cost:</strong> They are difficult to understand for a novice user. Adding a third measure to the axes makes them even more difficult to understand. Some values may be placed on top of each other [3].</p><h2><a name='header-n2516' class='md-header-anchor '></a>Dashboard: Development</h2><h3><a name='header-n2517' class='md-header-anchor '></a>Top Countries By Game Revenues</h3><p><img src='images/TopCountriesByGameRevenues/TopCountriesByGameRevenues.png' alt='TopCountriesByGameRevenues' referrerPolicy='no-referrer' /></p><h4><a name='header-n2519' class='md-header-anchor '></a>Development</h4><p>First, I wanted to combine 4 different <strong>Country</strong> fields, because different years contain some different countries. I created a new group named <strong>Europe</strong> and added European countries in it. Then I created a calculated field named <strong>Total Value in 4 Years</strong>. This field was used to filter the countries by their total market revenues.</p><p>I dragged <strong>Grouped Countries</strong> and <strong>Measure Names</strong> to Columns. Then I dragged <strong>Measure Values</strong> to Rows. While holding &quot;Ctrl&quot; key, I dragged <strong>Measure Values</strong> from the Rows to Filters and selected 2015, 2016, 2017 and 2018. After that, I dragged <strong>Total Value in 4 Years</strong> to Filters and selected &quot;Sum&quot;. I selected &quot;At least 10 000 000 000&quot; as a filter and applied. Then I clicked <strong>Grouped Countries</strong> in the Rows and sorted as descending order. This sorted the countries by their total revenues in 4 years.</p><h4><a name='header-n2522' class='md-header-anchor '></a>Step-by-step</h4><ol start='' ><li><p>From the <strong>Data</strong> pane, select <strong>Top 100 Countries-Markets by Game Revenues 2015-2018</strong> source.</p></li><li><p>Under Dimensions, hold down &quot;Ctrl&quot; key and select all fields named <strong>Country</strong>, right-click any of it, select <strong>Transform&gt;Merge mismatched fields</strong>. Name the new field as <strong>Grouped Countries</strong> and add Europe countries to the new <strong>Europe</strong> group (image below).</p><p><img src='images/TopCountriesByGameRevenues/GroupedCountries.png' alt='' referrerPolicy='no-referrer' /></p></li><li><p>From the <strong>Data</strong> pane, under Measures, right click to an empty space and select <strong>Create&gt;Calculated Field</strong>. Name the new field as &quot;Total Value in 4 Years&quot;. Enter the calculation below and click Apply.</p><p><code>[Total Revenues in US Dollars]+[Total Revenues in US Dollars (2016)]+[Total Revenues in US Dollars (2017)]+[Total Revenues in US Dollars (2018)]</code></p></li><li><p>From the <strong>Data</strong> pane, under Dimensions, hold down the &quot;Ctrl&quot; key, select <strong>Grouped Countries</strong> and <strong>Measure Values</strong> to <strong>Columns</strong> pane.</p></li><li><p>From the <strong>Data</strong> pane, under Measures, drag <strong>Measure Values</strong> to <strong>Rows</strong> pane.</p></li><li><p>While holding &quot;Ctrl&quot; key, drag <strong>Measure Values</strong> from the <strong>Rows</strong> pane to <strong>Filters</strong> card. Select 2015, 2016, 2017 and 2018 values only and click Apply.</p></li><li><p>From the <strong>Data</strong> pane, under Measures, drag <strong>Total Value in 4 Years</strong> to <strong>Filters</strong> card. Select &quot;Sum&quot;, click Next, select &quot;At least&quot; and enter &quot;10 000 000 000&quot;. Click apply.</p></li><li><p>Click <strong>Grouped Countries</strong> on the <strong>Columns</strong> pane and click Sort Descending button.</p></li><li><p><strong>Miscellaneous:  </strong> Colored the bars by while holding &quot;Ctrl&quot; key, dragged <strong>Measure Names</strong> to Color. Hide <strong>Grouped Countries</strong> field label. Renamed <strong>Measure Values</strong> axis as <strong>Total Revenues</strong> and changed its number format to millions.</p></li></ol><h3><a name='header-n2544' class='md-header-anchor '></a>Global Sales By Year</h3><p><img src='images/GlobalSalesByYear/GlobalSalesByYear.png' alt='GlobalSalesByYear' referrerPolicy='no-referrer' /></p><h4><a name='header-n2546' class='md-header-anchor '></a>Development</h4><p>I dragged <strong>Release Date</strong> to Columns and Measure Values to Rows. Then I filtered Measure Values as Europe, Japan, North America and Other Sales. I colored the <strong>Measure Names</strong> and changed mark type to Area. Then I calculated the percentage of digital sales.</p><p>I wanted the show &quot;Percentage of Digital Sales&quot; differently from the Packaged sales because when I used Area for the percentage, it didn&#39;t look clear and it made the visualization more complex. To solve this, I used <strong>Line</strong> as mark type. It looks more clear and eye-catching. Then I changed the percentage axis&#39; range from 0 to 100.</p><p>For the last touches, I re-ordered the measures and changed the color palette to &quot;Color Blind&quot;.</p><h4><a name='header-n2550' class='md-header-anchor '></a>Step-by-step</h4><ol start='' ><li><p>From the <strong>Data</strong> pane, select <strong>Video Game Sales</strong> source and under Dimensions, drag <strong>Release Date</strong> to <strong>Columns</strong> shelf.</p></li><li><p>From the <strong>Columns</strong> shelf, right-click <strong>Release Date</strong> and select <strong>Year</strong> (the second Year in the list).</p></li><li><p>From the <strong>Data</strong> pane, under Measures, drag <strong>Measure Values</strong> to <strong>Rows</strong> shelf.</p></li><li><p>From the <strong>Data</strong> pane, under Dimensions, drag <strong>Measure Names</strong> to Filters. Edit filter and select <em>Europe Sales, Japan Sales, North America Sales</em> and <em>Other Sales</em> and apply.</p></li><li><p>From the <strong>Data</strong> pane, under Dimensions, drag <strong>Measure Names</strong> to Color.</p></li><li><p>On the Marks card, click the Mark Type drop-down and select <strong>Area</strong>.</p></li><li><p>From the <strong>Data</strong> pane, select <strong>Packaged And Digital Sales</strong> source</p></li><li><p>Right-click to an empty space on Measures and select <strong>Create&gt;Calculated Field</strong>. Name the new field as &quot;Percentage of Digital Sales&quot;, use the following calculation and click Apply:</p><p><code>([Digital]+[Digital (Ubisoft)])/([Total]+[Total (Ubisoft)])*100</code></p></li><li><p>Drag this new <strong>Percentage of Digital Sales</strong> field to <strong>Rows</strong> shelf. Right click to it and select <strong>Dual Axis</strong>.</p></li><li><p>On the Marks card, select <strong>SUM(Percentage of Digital Sales)</strong>, click the Mark Type drop-down and select <strong>Line</strong>.</p></li><li><p>Double click on the <strong>Percentage of Digital Sales</strong> axis to open the Edit Axis dialog box (image below) and select <strong>Fixed</strong>. Then enter <strong>0</strong> to Fixed start, and <strong>100</strong> to Fixed end.</p><p><img src='images/GlobalSalesByYear/PercentageAxis.png' alt='' referrerPolicy='no-referrer' /></p></li><li><p><strong>Miscellaneous:</strong> Re-ordered Measure Names, changed the color palette, renamed Y axis to &quot;Number of Packaged Sales (M)&quot;. Hide Year of Release Date field label. Added annotations to console release years.</p></li></ol><h3><a name='header-n2578' class='md-header-anchor '></a>Word Cloud</h3><p><img src='images/WordCloud/WordCloud.png' alt='Wordcloud' referrerPolicy='no-referrer' /></p><h4><a name='header-n2580' class='md-header-anchor '></a>Development</h4><p>I used an online word count program to count words in the game titles in the <strong>Video Game Sales</strong> dataset. Then I saved the results to a new Excel file; games-wordcounts.xlsx. I tried to combine sequences as much as possible, for example, &quot;FIFA 2010&quot; and &quot;FIFA 2011&quot; counted as 1 time, but &quot;FIFA 2010&quot; and &quot;2006 FIFA World Cup Germany&quot; counted 2 times since they are different sequences.</p><p>To create a word cloud, I dragged <strong>Word</strong> to <strong>Text</strong> on the Marks card. Then I dragged <strong>Count</strong> to <strong>Size</strong> and <strong>Color</strong>. Finally, I changed the font type and size.</p><h4><a name='header-n2583' class='md-header-anchor '></a>Step-by-step</h4><ol start='' ><li>From the <strong>Data</strong> pane, select <strong>games-wordcounts</strong> source and under Dimensions, drag <strong>Word</strong> to <strong>Text</strong> on the Marks card.</li><li>From the <strong>Data</strong> pane, under Measures, drag <strong>Count</strong> to <strong>Size</strong> on the Marks card.</li><li>From the <strong>Data</strong> pane, under Measures, drag <strong>Count</strong> to <strong>Color</strong> on the Marks card.</li><li><strong>Miscellaneous:</strong> Changed font properties.</li></ol><h3><a name='header-n2593' class='md-header-anchor '></a>Game Sales by Platforms</h3><p><img src='images/GameSalesByPlatforms/GameSalesByPlatforms.png' alt='GameSalesByPlatforms' referrerPolicy='no-referrer' /></p><h4><a name='header-n2595' class='md-header-anchor '></a>Development</h4><p>For this visualization, I tried not to exceed 20 platforms because it would be difficult to show that much color. Because of this, I excluded the least popular platforms and grouped some platforms by their release time (4th Generation etc.).</p><p>I dragged <strong>Release Date</strong> to Columns and <strong>Global Sales</strong> to Rows. I selected Bar as mark type and dragged <strong>Grouped Platforms</strong> to Color. This created stacked bars. Then I changed color palette and manually changed some colors to prevent to have similar colors on the same bar.</p><h4><a name='header-n2598' class='md-header-anchor '></a>Step-by-step</h4><ol start='' ><li>From the <strong>Data</strong> pane, select <strong>Video Game Sales</strong> source and under Dimensions, drag <strong>Release Date</strong> to <strong>Columns</strong> shelf.</li><li>From the <strong>Columns</strong> shelf, right-click <strong>Release Date</strong> and select <strong>Year</strong> (the second Year in the list).</li><li>From the <strong>Data</strong> pane, under Measures, drag <strong>Global Sales</strong> to <strong>Rows</strong> shelf.</li><li>On the Marks card, click the Mark Type drop-down and select <strong>Bar</strong>.</li><li>From the <strong>Data</strong> pane, under Dimensions, drag <strong>Grouped Platforms</strong> to <strong>Color</strong>. Select &quot;Add all members&quot;.</li><li><strong>Miscellaneous:</strong>  Excluded less popular platforms e.g. 3DO, GC etc., made the bars thinner, renamed axes, changed and adjusted the color palette.</li></ol><h3><a name='header-n2612' class='md-header-anchor '></a>Global Sales vs. Average Critic Scores</h3><p><img src='images/GlobalSalesVsAvgCriticScores/GlobalSalesVsAvgCriticScores.png' alt='GlobalSalesVsAvgCriticScores' referrerPolicy='no-referrer' /></p><h4><a name='header-n2614' class='md-header-anchor '></a>Development</h4><p>I dragged <strong>Critic Score</strong> to Columns and changed its measure to Average. Then I dragged <strong>Global Sales</strong> to Rows. I colored the circles by <strong>Platform</strong> and dragged <strong>Name</strong> to Detail to place game titles on the sheet. I selected filled circles for all of the platform. I could use a different shape for each platform, but they looked more complicated when I tried that.</p><p>I choose <strong>Logarithmic</strong> scale to present <strong>Global Sales</strong>. This made the less sold titles more visible. Finally, I filtered <strong>Platform</strong> to show 7th generation gaming platforms and changed color scheme to &quot;Color Blind&quot;.</p><h4><a name='header-n2617' class='md-header-anchor '></a>Step-by-step</h4><ol start='' ><li>From the <strong>Data</strong> pane, select <strong>Video Game Sales</strong> source and under Measures, drag <strong>Critic Score</strong> to <strong>Columns</strong> shelf.</li><li>From the <strong>Columns</strong> shelf, right-click <strong>Critic Score</strong> and select <strong>Measure&gt;Average</strong>.</li><li>From the <strong>Data</strong> pane, under Measures, drag <strong>Global Sales</strong> to <strong>Rows</strong> shelf.</li><li>From the <strong>Data</strong> pane, under Dimensions, drag <strong>Platform</strong> to <strong>Color</strong>. Select &quot;Add all members&quot;.</li><li>From the <strong>Data</strong> pane, under Dimensions, drag <strong>Name</strong> to <strong>Detail</strong>. Select &quot;Add all members&quot;.</li><li>Double click on the <strong>Global Sales</strong> axis to open the Edit Axis dialog box and select <strong>Fixed</strong>. Then enter <strong>0,9</strong>, to Fixed start, and <strong>100</strong> to Fixed end. Check <strong>Logarithmic</strong> and select <strong>Positive</strong> under the Scale and close the dialog.</li><li><strong>Miscellaneous:</strong> Filtered the games before 2000, filtered platforms, filtered games that sold under 100K.</li></ol><h3><a name='header-n2633' class='md-header-anchor '></a>Dashboard: Evaluation</h3><p>Here I list 5 design guidelines that I used.</p><ol start='' ><li><p><strong>[G1.2] Important data should be represented by graphical elements that are more visually distinct than those representing less important information.</strong></p><p>In the <strong>Global Sales By Year</strong> visualization, I used a <em>line</em> unlike the other <em>area</em> values, because the <strong>Percentage of Digital Sales</strong> value is so important. It is the main reason why <strong>Number of Packaged Sales</strong> value decreased at that specific time.</p></li><li><p><strong>[G1.3] Greater numerical quantities should be represented by more distinct graphical elements.</strong></p><p>In the <strong>Top Countries By Game Revenues</strong> visualization, I used faded color for older years and darker color for newer years. This made easier for users to focus on the year we live in. In the <strong>Word Cloud</strong> visualization, the color is getting darker and the size is getting bigger as the word is used more often.</p></li><li><p><strong>[G4.1] Use more saturated colors when color coding small symbols, thin lines, or other small areas. Use less saturated colors for coding large areas.</strong></p><p>In the <strong>Global Sales By Year</strong> visualization, the &quot;line area&quot; occupies a large part so I decreased the opacity of the colors to decrease the saturation. In the <strong>Global Sales vs. Average Critic Scores</strong> I used saturated colors since the circles are small and overlapped.</p></li><li><p><strong>[G6.16] When using overlapping textures to separate overlapping regions in a display, avoid patterns that can lead to aliasing problems when they are combined.</strong></p><p>In the <strong>Global Sales vs. Average Critic Scores</strong> visualization, there are many overlapping data. I tried to use different shapes but it caused aliasing problems as described in the guideline. So I used the filled circle for all of the categories but changed their color. The shapes are the same but the categories remain distinguishable.</p></li><li><p><strong>Consistency and standards: Users should not have to wonder whether different words, situations, or actions mean the same thing. Follow platform conventions. (from &quot;Nielsen’s Heuristics&quot;)</strong></p><p>I tried to stick to a consistent color palette in the visualizations; blue, orange and gray. These colors are also improve accessibility for color blind people. I avoided to use industry-specific terms in the visualizations so that any person that have no idea about the industry can <em>read</em> the visualizations or <em>comment</em> on them.</p></li></ol><h2><a name='header-n2651' class='md-header-anchor '></a>10 Meaningful Facts</h2><ul><li><p>In the <strong>Top Countries By Game Revenues</strong>, current leader countries can be seen year by year. The first thing to realize that the game revenue is increasing globally. China, U.S.A. and Japan are leading the industry, and Europe, nearly 40 countries combined, can barely compete with these 3 countries.</p></li><li><p>In the <strong>Global Sales By Year</strong>, number of game sales visualized as packaged (retail) and digital. Video game industry was fluctuant between the years 1980 - 1993. The sales mostly followed an upwards trend for about 15 years. Major console releases, like PlayStation or Xbox, have boosted the sales.</p></li><li><p>In the <strong>Global Sales By Year</strong>, it can be seen that the digital download platforms (e.g. Steam, PlayStation Network) released in 2007 and after a year, packaged sales has begun to decrease. Less than 10 years, Percentage of Digital Sales of companies has reached nearly 50%.</p></li><li><p>In the <strong>Word Cloud</strong>, most frequently used words in the game titles grouped. The most used word is &quot;mario&quot;, followed by &quot;super&quot;, &quot;pokemon&quot; and &quot;dragon&quot;. This word cloud can give an idea which game brands are the most popular. Everybody knows <strong>Super Mario</strong> brand and the word <strong>dragon</strong> is very common in fantasy games.</p></li><li><p>In the <strong>Game Sales By Platforms</strong>, many information can be extracted. Early years, two platforms were dominating the industry: Atari 2600 and NES (Nintendo Entertainment System). A bar in this visualization shows which platforms are popular in that specific year. The most important information we can get is average lifespan of platforms. According to the visualization, a platform&#39;s most productive years are between 6-8 years (except PC).</p></li><li><p>In the <strong>Game Sales By Platforms</strong>, we can see that when a new successor released for a platform, the game sales still continue to sell for a couple of years. For example, when PlayStation 4 released, PlayStation 3 sales were still high for 3 years.</p></li><li><p>In the <strong>Global Sales vs. Average Critic Scores</strong>, game titles displayed by their critic scores (from game reviews) and how much they sold. I used a linear Y axis to represent this visualization because the gaps are too big; the most sold title (Wii Sports, 82,5 Million) has sold twice of the closest title (Mario Kart Wii, 35,5 Million).</p><p>The purpose of this visualization is to show how critic scores affect the sales of the video games. It can be seen that the game sales are mostly directly proportional with the critic scores: higher scores means higher sells. But we see some interesting results. When we look at <strong>Wii</strong>, we can see that many titles with lower scores have sold more than any platform. For example, the best selling game <strong>Wii Sports</strong> has sold 82,5 Million while its critic score is 76, an average score. On the other hand, we see that the PC titles are mostly scattered at the bottom right side, which means many titles with higher scores have not sold that much.</p></li></ul><h2><a name='header-n2668' class='md-header-anchor '></a>5 Actionable Insights</h2><ol start='' ><li><strong>Top Countries By Game Values:</strong> The game industry is growing through the years globally and for the last 4 years, 2018 has growth more than previous years. We can find countries that missed that trend and they could be a great market potential such as Australia and Ukraine. The filter needed to be modified to see these countries.</li><li><strong>Global Sales By Year:</strong> In the video game industry, many game developers collaborate with game publishers to advertise and deliver huge numbers of physical copies to stores around the globe because these services are so expensive for developers to afford. In return to this, publishers get most of the share from the sales. This chart can be useful for developers because digital advertisement is cheaper and digital download platforms share more profit with the developers. They can see the current trend and evaluate whether it is worth to use retail or not.</li><li><strong>Word Cloud:</strong> While naming the video games, it is important to find a unique name. With a word cloud, the most used words can be found.</li><li><strong>Game Sales By Platforms:</strong> Which platforms are at the top in the market? How long is it until the end of current generations&#39; life-span. Is there any need to invest in a specific platform? This chart can answer these kinds of questions.</li><li><strong>Global Sales vs. Average Critic Scores:</strong> In this visualization, developers can have an idea about how competitive or challenging the platform is. For example, <em>PC</em> platform is competitive because even games with higher critic scores have a risk to sell less. But on <em>Wii</em> platform, an average game can sell more.</li></ol><h2><a name='header-n2680' class='md-header-anchor '></a>2 Valuable Outcomes</h2><ol start='' ><li><strong>Short-term outcome:</strong> The dashboard can give information about the market potential both for countries and platforms. According to the graphs, game industry is growing consistently and doesn&#39;t seem to lose this trend soon. Digital sales are increasing and packaged sales are decreasing yet packaged sales are consisting nearly 50% of the sales and it is still worth investing for a few years.</li><li><strong>Long-term outcome:</strong> The industry is shifting through the digital inevitably. Companies have to keep up with it to make profit. Platform lifespan can be observed and developers can organize themselves for new platform releases.</li></ol><h2><a name='header-n2686' class='md-header-anchor '></a>References</h2><p>I used following the web sites as a reference, apart from the course book:</p><p>[1] National Center for Education Statistics. <em>How to choose which type of graph to use?</em> URL: <a href='https://nces.ed.gov/nceskids/help/user_guide/graph/whentouse.asp'>https://nces.ed.gov/nceskids/help/user_guide/graph/whentouse.asp</a></p><p>[2] sciencing.com. <em>The Difference Between Bar Graphs and Line Graphs.</em> 2018. URL: <a href='https://sciencing.com/difference-bar-graphs-line-graphs-6471264.html'>https://sciencing.com/difference-bar-graphs-line-graphs-6471264.html</a></p><p>[3] qliq.com. <em>When to use a scatter plot?</em> URL: <a href='https://help.qlik.com/en-US/sense/September2017/Subsystems/Hub/Content/Visualizations/ScatterPlot/when-to-use-scatter-plot.htm'>https://help.qlik.com/en-US/sense/September2017/Subsystems/Hub/Content/Visualizations/ScatterPlot/when-to-use-scatter-plot.htm</a></p></div>
+<div  id='write'  class = ''><h1><a name="analysis-of-the-video-game-industry" class="md-header-anchor"></a><span>Analysis of the Video Game Industry</span></h1><h2><a name="contents" class="md-header-anchor"></a><span>Contents</span></h2><ul><li><p><a href='#project-description'><span>Project Description</span></a></p></li><li><p><a href='#dataset-description'><span>Dataset Description</span></a></p></li><li><p><a href='#dashboard-design'><span>Dashboard: Design</span></a></p><ul><li><a href='#design-rationale'><span>Design Rationale</span></a></li><li><a href='#costbenefit-discussion'><span>Cost/Benefit Discussion</span></a></li></ul></li><li><p><a href='#dashboard-development'><span>Dashboard: Development</span></a></p><ul><li><a href='#top-countries-by-game-revenues'><span>Top Countries By Game Revenues</span></a></li><li><a href='#global-sales-by-year'><span>Global Sales By Year</span></a></li><li><a href='#word-cloud'><span>Word Cloud</span></a></li><li><a href='#game-sales-by-platforms'><span>Game Sales By Platforms</span></a></li><li><a href='#global-sales-vs-average-critic-scores'><span>Global Sales vs. Average Critic Scores</span></a></li></ul></li><li><p><a href='#dashboard-evaluation'><span>Dashboard: Evaluation</span></a></p></li><li><p><a href='#10-meaningful-facts'><span>10 Meaningful Facts</span></a></p></li><li><p><a href='#5-actionable-insights'><span>5 Actionable Insights </span></a></p></li><li><p><a href='#2-valuable-outcomes'><span>2 Valuable Outcomes</span></a></p></li><li><p><a href='#references'><span>References</span></a></p></li></ul><h2><a name="project-description" class="md-header-anchor"></a><span>Project Description</span></h2><p><span>The video game industry is growing every year with new products and technologies. Experts expect the industry will be worth $138 billion by the end of 2018. The industry has a bigger impact on our daily lives than we thought. For example, processor and graphics cards manufacturers develop more and more powerful units along the years for us to run the latest game titles. But most users don&#39;t use that much power. A humble PC can run any operating system or office software to run our routine non-gaming tasks on PC.</span></p><p><span>In my project, Analysis of the Video Game Industry, I analyzed 16,715 game titles released in the last 35 years and tried not just to create </span><em><span>some visualizations</span></em><span> but to give a brief history of the industry as well. During the visualizations, you will see which countries are leading the industry, how the internet has changed it, life cycles/successes/failures of gaming consoles and how game critics affected the sales of video games.</span></p><h2><a name="dataset-description" class="md-header-anchor"></a><span>Dataset Description</span></h2><p><span>I used 3 datasets:</span></p><p><strong><span>Sources:</span></strong><span> </span></p><ul><li><a href='https://www.kaggle.com/rush4ratio/video-game-sales-with-ratings'><span>Video Game Sales With Ratings, Kaggle</span></a><span> (Video_Games_Sales_1980-2016.csv)</span></li><li><a href='https://newzoo.com/insights/rankings/top-100-countries-by-game-revenues/'><span>Top 100 Countries/Markets by Game Revenues, newzoo</span></a><span> (Markets_by_Game_Revenues-2015-2018.xlsx)</span></li><li><a href='https://ir.ea.com'><span>Electronic Arts</span></a><span> and </span><a href='https://www.ubisoft.com/en-US/company/investor_center/index.aspx'><span>Ubisoft</span></a><span> annual reports in 2007-2018 (Packaged And Digital Sales.xlsx)</span></li></ul><p><span>In </span><em><span>Video Game Sales With Ratings</span></em><span>, there are 16,715 game titles. The ones that I used are; platform they have been released, sales in North America, Europe and Japan and Critic Scores.</span></p><p><span>In </span><em><span>Top 100 Countries/Markets by Game Revenues</span></em><span>, countries listed along with their total revenues. I combined the years 2015, 2016, 2017 and 2018 in one single Excel file. I used relationships (left join by Country) between the sheets, as can be seen below:</span></p><p><img src="images/TopCountriesByGameRevenues/TableRelationships.png" referrerpolicy="no-referrer" alt="TopCountriesByGameRevenuesTableRelationships"></p><p><span>In annual reports of </span><em><span>Electronic Arts</span></em><span> and </span><em><span>Ubisoft</span></em><span>, I referred to their fiscal year reports between the years 2007-2018. The file contains packaged sales and digital sales, year by year.</span></p><p><span>All of the sources are public and can be found in the &quot;Datasets&quot; folder in the main folder of the project.</span></p><p><strong><span>Type:</span></strong><span> Excel, CSV</span></p><p><strong><span>Size:</span></strong><span> 1,59 MB. 16,715 Game Titles</span></p><p><strong><span>Transformations:</span></strong><span> </span></p><p><span>Video Game Sales With Ratings:</span></p><ul><li><span>Removed 2 games with no titles</span></li><li><span>Added missing &quot;Year&quot;s to some titles</span></li><li><span>Updated sales of top titles of 2016</span></li></ul><p><span>Top 100 Countries/Markets by Game Revenues</span></p><ul><li><span>Years 2015, 2016, 2017 and 2018 combined in one Excel file</span></li><li><span>Removed decimal separators from &quot;Population&quot;, &quot;Internet Population&quot; and &quot;Total Revenues in US Dollars&quot; columns.</span></li></ul><h2><a name="dashboard-design" class="md-header-anchor"></a><span>Dashboard: Design</span></h2><h3><a name="design-rationale" class="md-header-anchor"></a><span>Design Rationale</span></h3><p><span>I used bar graph, line (area) graph, stacked bars and scatter plots to create visualizations. All visualizations were created in Tableau Desktop version 2018.2.</span></p><h4><a name="bar-graphs" class="md-header-anchor"></a><span>Bar Graphs</span></h4><p><span>Bar graphs are a good way to compare values between different groups (Y axis) and track changes over time (X axis). Bar graphs work best when the changes over time are large (but not massive). Data can be visualized both vertically and horizontally. In </span><em><span>Top Countries By Game Revenues</span></em><span> visualization, I choose bar graphs to show the growth of the industry for the last 4 years. </span></p><p><strong><span>Possible use cases:</span></strong><span> Poll results, how Y value changed in X years...</span></p><h4><a name="line-graphs" class="md-header-anchor"></a><span>Line Graphs</span></h4><p><span>Line graphs often used to visualize real-time or more frequent </span><em><span>ticks</span></em><span> of data. Area graphs are a kind of line graphs. Area graphs work the best when comparing two or more related groups. In </span><em><span>Global Sales By Year</span></em><span> visualization, I choose area graph to determine dramatic ups and downs in the industry.</span></p><p><strong><span>Possible use cases:</span></strong><span> Telemetry data, exchange rates...</span></p><h4><a name="word-clouds" class="md-header-anchor"></a><span>Word Clouds</span></h4><p><span>Word clouds are used to spot word frequencies. They reflect the topic; for example a word cloud of a political topic contain words like </span><em><span>freedom</span></em><span>, </span><em><span>employment</span></em><span>, </span><em><span>government</span></em><span> while a music topic can contain words like </span><em><span>sound, equipment, classical</span></em><span> etc.</span></p><p><strong><span>Possible use cases:</span></strong><span> Analyzing surveys, creating keywords...</span></p><h4><a name="stacked-bars" class="md-header-anchor"></a><span>Stacked Bars</span></h4><p><span>Stacked bars are a kind of bar graphs but this time, the bars are divided and can contain more than one variable. In </span><em><span>Game Sales by Platforms</span></em><span> visualization, there are multiple gaming platforms in one year so I used stacked bars to present them.</span></p><p><strong><span>Possible use cases:</span></strong><span> Similar as for bar graphs.</span></p><h4><a name="scatter-plots" class="md-header-anchor"></a><span>Scatter Plots</span></h4><p><span>Scatter plots (a.k.a. X-Y plots) are used to present relationships between two different values. If both variables increase, it means that they have a positive relationship. If one variable decreases while the other increases, it means that they have a negative relationship. That is just what I needed to present at the </span><em><span>Global Sales vs. Average Critic Scores</span></em><span> visualization. X level represents the game&#39;s critic scores and Y level represents global sales of the game.</span></p><p><strong><span>Possible use cases:</span></strong><span> When any relationships need to be visualized.</span></p><h3><a name="costbenefit-discussion" class="md-header-anchor"></a><span>Cost/Benefit Discussion</span></h3><h4><a name="bar-graphs-n92" class="md-header-anchor"></a><span>Bar Graphs</span></h4><p><strong><span>Benefit:</span></strong><span> Bar graphs are useful for displaying steady increase or decrease of the data [1]. They are very easy to understand especially when the data is sorted.</span></p><p><strong><span>Cost:</span></strong><span> They are not very useful for real-time data since they are not optimal to display small changes in the data. The data should not fluctuate otherwise comparing the data would be difficult.</span></p><h4><a name="line-graphs-n95" class="md-header-anchor"></a><span>Line Graphs</span></h4><p><strong><span>Benefit:</span></strong><span> Line graphs are useful for displaying trends of the data. Y axis could represent anything, but X level ordinarily represents time [2]. They are also a good way to represent intersecting data.</span></p><p><strong><span>Cost:</span></strong><span> They can not be sorted through the X axis: the data always flows from left to right.</span></p><h4><a name="word-clouds-n98" class="md-header-anchor"></a><span>Word Clouds</span></h4><p><strong><span>Benefit:</span></strong><span> They are visually appealing. Hundreds of data can be displayed...</span></p><p><strong><span>Cost:</span></strong><span> ...but displaying that much data makes more difficult to find a specific one. The size of the word might not be represent the main idea of the topic.</span></p><h4><a name="stacked-bars-n101" class="md-header-anchor"></a><span>Stacked Bars</span></h4><p><strong><span>Benefit:</span></strong><span> Stacked bars work well when total and subtotals need to be shown at the same time.</span></p><p><strong><span>Cost:</span></strong><span> Too many stacks make the data too complicated to understand.</span></p><h4><a name="scatter-plots-n104" class="md-header-anchor"></a><span>Scatter Plots</span></h4><p><strong><span>Benefit:</span></strong><span> Scatter plots are one of the rare visualizations that is used to represent relationships between two (or more) data.</span></p><p><strong><span>Cost:</span></strong><span> They are difficult to understand for a novice user. Adding a third measure to the axes makes them even more difficult to understand. Some values may be placed on top of each other [3].</span></p><h2><a name="dashboard-development" class="md-header-anchor"></a><span>Dashboard: Development</span></h2><h3><a name="top-countries-by-game-revenues" class="md-header-anchor"></a><span>Top Countries By Game Revenues</span></h3><p><img src="images/TopCountriesByGameRevenues/TopCountriesByGameRevenues.png" referrerpolicy="no-referrer" alt="TopCountriesByGameRevenues"></p><h4><a name="development" class="md-header-anchor"></a><span>Development</span></h4><p><span>First, I wanted to combine 4 different </span><strong><span>Country</span></strong><span> fields, because different years contain some different countries. I created a new group named </span><strong><span>Europe</span></strong><span> and added European countries in it. Then I created a calculated field named </span><strong><span>Total Value in 4 Years</span></strong><span>. This field was used to filter the countries by their total market revenues.</span></p><p><span>I dragged </span><strong><span>Grouped Countries</span></strong><span> and </span><strong><span>Measure Names</span></strong><span> to Columns. Then I dragged </span><strong><span>Measure Values</span></strong><span> to Rows. While holding &quot;Ctrl&quot; key, I dragged </span><strong><span>Measure Values</span></strong><span> from the Rows to Filters and selected 2015, 2016, 2017 and 2018. After that, I dragged </span><strong><span>Total Value in 4 Years</span></strong><span> to Filters and selected &quot;Sum&quot;. I selected &quot;At least 10 000 000 000&quot; as a filter and applied. Then I clicked </span><strong><span>Grouped Countries</span></strong><span> in the Rows and sorted as descending order. This sorted the countries by their total revenues in 4 years.</span></p><h4><a name="step-by-step" class="md-header-anchor"></a><span>Step-by-step</span></h4><ol start='' ><li><p><span>From the </span><strong><span>Data</span></strong><span> pane, select </span><strong><span>Top 100 Countries-Markets by Game Revenues 2015-2018</span></strong><span> source.</span></p></li><li><p><span>Under Dimensions, hold down &quot;Ctrl&quot; key and select all fields named </span><strong><span>Country</span></strong><span>, right-click any of it, select </span><strong><span>Transform&gt;Merge mismatched fields</span></strong><span>. Name the new field as </span><strong><span>Grouped Countries</span></strong><span> and add Europe countries to the new </span><strong><span>Europe</span></strong><span> group (image below).</span></p><p><img src="images/TopCountriesByGameRevenues/GroupedCountries.png" referrerpolicy="no-referrer"></p></li><li><p><span>From the </span><strong><span>Data</span></strong><span> pane, under Measures, right click to an empty space and select </span><strong><span>Create&gt;Calculated Field</span></strong><span>. Name the new field as &quot;Total Value in 4 Years&quot;. Enter the calculation below and click Apply.</span></p><p><code>[Total Revenues in US Dollars]+[Total Revenues in US Dollars (2016)]+[Total Revenues in US Dollars (2017)]+[Total Revenues in US Dollars (2018)]</code></p></li><li><p><span>From the </span><strong><span>Data</span></strong><span> pane, under Dimensions, hold down the &quot;Ctrl&quot; key, select </span><strong><span>Grouped Countries</span></strong><span> and </span><strong><span>Measure Values</span></strong><span> to </span><strong><span>Columns</span></strong><span> pane.</span></p></li><li><p><span>From the </span><strong><span>Data</span></strong><span> pane, under Measures, drag </span><strong><span>Measure Values</span></strong><span> to </span><strong><span>Rows</span></strong><span> pane.</span></p></li><li><p><span>While holding &quot;Ctrl&quot; key, drag </span><strong><span>Measure Values</span></strong><span> from the </span><strong><span>Rows</span></strong><span> pane to </span><strong><span>Filters</span></strong><span> card. Select 2015, 2016, 2017 and 2018 values only and click Apply.</span></p></li><li><p><span>From the </span><strong><span>Data</span></strong><span> pane, under Measures, drag </span><strong><span>Total Value in 4 Years</span></strong><span> to </span><strong><span>Filters</span></strong><span> card. Select &quot;Sum&quot;, click Next, select &quot;At least&quot; and enter &quot;10 000 000 000&quot;. Click apply.</span></p></li><li><p><span>Click </span><strong><span>Grouped Countries</span></strong><span> on the </span><strong><span>Columns</span></strong><span> pane and click Sort Descending button.</span></p></li><li><p><strong><span>Miscellaneous:  </span></strong><span> Colored the bars by while holding &quot;Ctrl&quot; key, dragged </span><strong><span>Measure Names</span></strong><span> to Color. Hide </span><strong><span>Grouped Countries</span></strong><span> field label. Renamed </span><strong><span>Measure Values</span></strong><span> axis as </span><strong><span>Total Revenues</span></strong><span> and changed its number format to millions.</span></p></li></ol><h3><a name="global-sales-by-year" class="md-header-anchor"></a><span>Global Sales By Year</span></h3><p><img src="images/GlobalSalesByYear/GlobalSalesByYear.png" referrerpolicy="no-referrer" alt="GlobalSalesByYear"></p><h4><a name="development-n137" class="md-header-anchor"></a><span>Development</span></h4><p><span>I wanted the show &quot;Percentage of Digital Sales&quot; differently from the Packaged sales because when I used Area for the percentage, it didn&#39;t look clear and it made the visualization more complex. To solve this, I used </span><strong><span>Line</span></strong><span> as mark type. It looks more clear and eye-catching.</span></p><h3><a name="word-cloud" class="md-header-anchor"></a><span>Word Cloud</span></h3><p><img src="images/WordCloud/WordCloud.png" referrerpolicy="no-referrer" alt="Wordcloud"></p><h4><a name="development-n171" class="md-header-anchor"></a><span>Development</span></h4><p><span>I used an online word count program to count words in the game titles in the </span><strong><span>Video Game Sales</span></strong><span> dataset. Then I saved the results to a new Excel file; games-wordcounts.xlsx. I tried to combine sequences as much as possible, for example, &quot;FIFA 2010&quot; and &quot;FIFA 2011&quot; counted as 1 time, but &quot;FIFA 2010&quot; and &quot;2006 FIFA World Cup Germany&quot; counted 2 times since they are different sequences.</span></p><h3><a name="game-sales-by-platforms" class="md-header-anchor"></a><span>Game Sales by Platforms</span></h3><p><img src="images/GameSalesByPlatforms/GameSalesByPlatforms.png" referrerpolicy="no-referrer" alt="GameSalesByPlatforms"></p><h4><a name="development-n186" class="md-header-anchor"></a><span>Development</span></h4><p><span>For this visualization, I tried not to exceed 20 platforms because it would be difficult to show that much color. Because of this, I excluded the least popular platforms and grouped some platforms by their release time (4th Generation etc.).</span></p><h3><a name="global-sales-vs-average-critic-scores" class="md-header-anchor"></a><span>Global Sales vs. Average Critic Scores</span></h3><p><img src="images/GlobalSalesVsAvgCriticScores/GlobalSalesVsAvgCriticScores.png" referrerpolicy="no-referrer" alt="GlobalSalesVsAvgCriticScores"></p><h4><a name="development-n205" class="md-header-anchor"></a><span>Development</span></h4><p><span>I could use a different shape for each platform, but they looked more complicated when I tried that.</span></p><h3><a name="dashboard-evaluation" class="md-header-anchor"></a><span>Dashboard: Evaluation</span></h3><p><span>Here I list 5 design guidelines that I used.</span></p><ol start='' ><li><p><strong><span>[G1.2] Important data should be represented by graphical elements that are more visually distinct than those representing less important information.</span></strong></p><p><span>In the </span><strong><span>Global Sales By Year</span></strong><span> visualization, I used a </span><em><span>line</span></em><span> unlike the other </span><em><span>area</span></em><span> values, because the </span><strong><span>Percentage of Digital Sales</span></strong><span> value is so important. It is the main reason why </span><strong><span>Number of Packaged Sales</span></strong><span> value decreased at that specific time.</span></p></li><li><p><strong><span>[G1.3] Greater numerical quantities should be represented by more distinct graphical elements.</span></strong></p><p><span>In the </span><strong><span>Top Countries By Game Revenues</span></strong><span> visualization, I used faded color for older years and darker color for newer years. This made easier for users to focus on the year we live in. In the </span><strong><span>Word Cloud</span></strong><span> visualization, the color is getting darker and the size is getting bigger as the word is used more often.</span></p></li><li><p><strong><span>[G4.1] Use more saturated colors when color coding small symbols, thin lines, or other small areas. Use less saturated colors for coding large areas.</span></strong></p><p><span>In the </span><strong><span>Global Sales By Year</span></strong><span> visualization, the &quot;line area&quot; occupies a large part so I decreased the opacity of the colors to decrease the saturation. In the </span><strong><span>Global Sales vs. Average Critic Scores</span></strong><span> I used saturated colors since the circles are small and overlapped.</span></p></li><li><p><strong><span>[G6.16] When using overlapping textures to separate overlapping regions in a display, avoid patterns that can lead to aliasing problems when they are combined.</span></strong></p><p><span>In the </span><strong><span>Global Sales vs. Average Critic Scores</span></strong><span> visualization, there are many overlapping data. I tried to use different shapes but it caused aliasing problems as described in the guideline. So I used the filled circle for all of the categories but changed their color. The shapes are the same but the categories remain distinguishable.</span></p></li><li><p><strong><span>Consistency and standards: Users should not have to wonder whether different words, situations, or actions mean the same thing. Follow platform conventions. (from &quot;Nielsen’s Heuristics&quot;)</span></strong></p><p><span>I tried to stick to a consistent color palette in the visualizations; blue, orange and gray. These colors are also improve accessibility for color blind people. I avoided to use industry-specific terms in the visualizations so that any person that have no idea about the industry can </span><em><span>read</span></em><span> the visualizations or </span><em><span>comment</span></em><span> on them.</span></p></li></ol><h2><a name="10-meaningful-facts" class="md-header-anchor"></a><span>10 Meaningful Facts</span></h2><ul><li><p><span>In the </span><strong><span>Top Countries By Game Revenues</span></strong><span>, current leader countries can be seen year by year. The first thing to realize that the game revenue is increasing globally. China, U.S.A. and Japan are leading the industry, and Europe, nearly 40 countries combined, can barely compete with these 3 countries.</span></p></li><li><p><span>In the </span><strong><span>Global Sales By Year</span></strong><span>, number of game sales visualized as packaged (retail) and digital. Video game industry was fluctuant between the years 1980 - 1993. The sales mostly followed an upwards trend for about 15 years. Major console releases, like PlayStation or Xbox, have boosted the sales.</span></p></li><li><p><span>In the </span><strong><span>Global Sales By Year</span></strong><span>, it can be seen that the digital download platforms (e.g. Steam, PlayStation Network) released in 2007 and after a year, packaged sales has begun to decrease. Less than 10 years, Percentage of Digital Sales of companies has reached nearly 50%.</span></p></li><li><p><span>In the </span><strong><span>Word Cloud</span></strong><span>, most frequently used words in the game titles grouped. The most used word is &quot;mario&quot;, followed by &quot;super&quot;, &quot;pokemon&quot; and &quot;dragon&quot;. This word cloud can give an idea which game brands are the most popular. Everybody knows </span><strong><span>Super Mario</span></strong><span> brand and the word </span><strong><span>dragon</span></strong><span> is very common in fantasy games.</span></p></li><li><p><span>In the </span><strong><span>Game Sales By Platforms</span></strong><span>, many information can be extracted. Early years, two platforms were dominating the industry: Atari 2600 and NES (Nintendo Entertainment System). A bar in this visualization shows which platforms are popular in that specific year. The most important information we can get is average lifespan of platforms. According to the visualization, a platform&#39;s most productive years are between 6-8 years (except PC).</span></p></li><li><p><span>In the </span><strong><span>Game Sales By Platforms</span></strong><span>, we can see that when a new successor released for a platform, the game sales still continue to sell for a couple of years. For example, when PlayStation 4 released, PlayStation 3 sales were still high for 3 years.</span></p></li><li><p><span>In the </span><strong><span>Global Sales vs. Average Critic Scores</span></strong><span>, game titles displayed by their critic scores (from game reviews) and how much they sold. I used a linear Y axis to represent this visualization because the gaps are too big; the most sold title (Wii Sports, 82,5 Million) has sold twice of the closest title (Mario Kart Wii, 35,5 Million).</span></p><p><span>The purpose of this visualization is to show how critic scores affect the sales of the video games. It can be seen that the game sales are mostly directly proportional with the critic scores: higher scores means higher sells. But we see some interesting results. When we look at </span><strong><span>Wii</span></strong><span>, we can see that many titles with lower scores have sold more than any platform. For example, the best selling game </span><strong><span>Wii Sports</span></strong><span> has sold 82,5 Million while its critic score is 76, an average score. On the other hand, we see that the PC titles are mostly scattered at the bottom right side, which means many titles with higher scores have not sold that much.</span></p></li></ul><h2><a name="5-actionable-insights" class="md-header-anchor"></a><span>5 Actionable Insights</span></h2><ol start='' ><li><strong><span>Top Countries By Game Values:</span></strong><span> The game industry is growing through the years globally and for the last 4 years, 2018 has growth more than previous years. We can find countries that missed that trend and they could be a great market potential such as Australia and Ukraine. The filter needed to be modified to see these countries.</span></li><li><strong><span>Global Sales By Year:</span></strong><span> In the video game industry, many game developers collaborate with game publishers to advertise and deliver huge numbers of physical copies to stores around the globe because these services are so expensive for developers to afford. In return to this, publishers get most of the share from the sales. This chart can be useful for developers because digital advertisement is cheaper and digital download platforms share more profit with the developers. They can see the current trend and evaluate whether it is worth to use retail or not.</span></li><li><strong><span>Word Cloud:</span></strong><span> While naming the video games, it is important to find a unique name. With a word cloud, the most used words can be found.</span></li><li><strong><span>Game Sales By Platforms:</span></strong><span> Which platforms are at the top in the market? How long is it until the end of current generations&#39; life-span. Is there any need to invest in a specific platform? This chart can answer these kinds of questions.</span></li><li><strong><span>Global Sales vs. Average Critic Scores:</span></strong><span> In this visualization, developers can have an idea about how competitive or challenging the platform is. For example, </span><em><span>PC</span></em><span> platform is competitive because even games with higher critic scores have a risk to sell less. But on </span><em><span>Wii</span></em><span> platform, an average game can sell more.</span></li></ol><h2><a name="2-valuable-outcomes" class="md-header-anchor"></a><span>2 Valuable Outcomes</span></h2><ol start='' ><li><strong><span>Short-term outcome:</span></strong><span> The dashboard can give information about the market potential both for countries and platforms. According to the graphs, game industry is growing consistently and doesn&#39;t seem to lose this trend soon. Digital sales are increasing and packaged sales are decreasing yet packaged sales are consisting nearly 50% of the sales and it is still worth investing for a few years.</span></li><li><strong><span>Long-term outcome:</span></strong><span> The industry is shifting through the digital inevitably. Companies have to keep up with it to make profit. Platform lifespan can be observed and developers can organize themselves for new platform releases.</span></li></ol><h2><a name="references" class="md-header-anchor"></a><span>References</span></h2><p><span>I used following the web sites as a reference, apart from the course book:</span></p><p><span>[1] National Center for Education Statistics. </span><em><span>How to choose which type of graph to use?</span></em><span> URL: </span><a href='https://nces.ed.gov/nceskids/help/user_guide/graph/whentouse.asp'><span>https://nces.ed.gov/nceskids/help/user_guide/graph/whentouse.asp</span></a></p><p><span>[2] sciencing.com. </span><em><span>The Difference Between Bar Graphs and Line Graphs.</span></em><span> 2018. URL: </span><a href='https://sciencing.com/difference-bar-graphs-line-graphs-6471264.html'><span>https://sciencing.com/difference-bar-graphs-line-graphs-6471264.html</span></a></p><p><span>[3] qliq.com. </span><em><span>When to use a scatter plot?</span></em><span> URL: </span><a href='https://help.qlik.com/en-US/sense/September2017/Subsystems/Hub/Content/Visualizations/ScatterPlot/when-to-use-scatter-plot.htm'><span>https://help.qlik.com/en-US/sense/September2017/Subsystems/Hub/Content/Visualizations/ScatterPlot/when-to-use-scatter-plot.htm</span></a></p></div>
 </body>
 </html>
