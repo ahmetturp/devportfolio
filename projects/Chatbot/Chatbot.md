@@ -4,7 +4,7 @@
 
 In this group project, we created a chatbot that can help users decide what they want to eat. The application applies these opportunities while focusing on different allergies and dietary preferences while aiming to satisfy the need with care and precision. We followed the Human-Computer Interaction (HCI) [1] and design guidelines [2]. For example, when any information is missing for the bot to find a restaurant, it asks more naturally (and in different ways each time) instead of something like "the 'price range' field is missing".
 
-<img border="0" alt="Picky" src="images/Picky.jpg">
+![diagram](images/picky.jpg)
 
 We used the following tools and frameworks during the development phase.
 - **Facebook for Developers:** The platform enables developers with a Facebook profile to connect their codes and projects to access data and using core functions of Facebook by using APIs, SDKs, or plug-ins.
